@@ -1,20 +1,16 @@
 <%- include('partials/header', { user }) %>
+<%- include('partials/navbar', { user }) %>
 
-<h1>Home</h1>
+<% messages.forEach(msg => { %>
+  <div>
+    <h3><%= msg.title %></h3>
+    <p><%= msg.text %></p>
 
-<% if (user) { %>
-  <p>Logged in as: <%= user.email %></p>
-
-  <a href="/auth/logout">Logout</a>
-
-  <br><br>
-  <a href="/messages/new">Create Message</a>
-
-<% } else { %>
-  <p>Not logged in</p>
-
-  <a href="/auth/login">Login</a>
-  <a href="/auth/signup">Sign up</a>
-<% } %>
+    <% if (user && user.is_member) { %>
+      <p>By: <%= msg.first_name %> <%= msg.last_name %></p>
+      <p><%= msg.created_at %></p>
+    <% } %>
+  </div>
+<% }) %>
 
 <%- include('partials/footer') %>

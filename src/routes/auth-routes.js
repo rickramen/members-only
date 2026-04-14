@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const authController = require("../controllers/authController");
-const { validateSignup } = require("../validators/userValidator");
+const authController = require("../controllers/auth-controller");
+const { validateSignup } = require("../validators/auth-validator");
 
 // GET signup page
 router.get("/signup", authController.getSignup);

@@ -9,8 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Routes
-const authRoutes = require("./routes/authRoutes");
-const messageRoutes = require("./routes/messageRoutes");
+const authRoutes = require("./routes/auth-routes");
+const messageRoutes = require("./routes/message-routes");
+const memberRoutes = require("./routes/member-routes");
+const homeController = require("./controllers/home-controller");
 
 // View engine
 app.set("view engine", "ejs");
@@ -29,9 +31,10 @@ app.use(session({
 }));
 
 // Passport init
+require("./config/passport")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
-require("./config/passport")(passport);
+
 
 // Make user available in views
 app.use((req, res, next) => {
@@ -40,11 +43,12 @@ app.use((req, res, next) => {
 });
 
 // Routes
+
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", memberRoutes);
+app.get("/", homeController.getHome);
+
 
 // 404
 app.use((req, res) => {

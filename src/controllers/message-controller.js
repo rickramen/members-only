@@ -1,4 +1,4 @@
-// controllers/messageController.js
+// messageController.js
 
 const pool = require("../db/pool");
 
