@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const pool = require("../db/pool");
 const { validationResult } = require("express-validator");
 
-// GET /signup
+// GET signup page
 exports.getSignup = (req, res) => {
   res.render("signup", { 
     errors: [],
@@ -10,7 +10,7 @@ exports.getSignup = (req, res) => {
   });
 };
 
-// POST /signup
+// POST signup
 exports.postSignup = async (req, res) => {
   const errors = validationResult(req);
 

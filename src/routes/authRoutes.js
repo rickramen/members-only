@@ -13,7 +13,6 @@ router.post("/signup", validateSignup, authController.postSignup);
 router.get("/login", (req, res) => {
   res.render("login", { errors: [] });
 });
-
 // POST login
 router.post(
   "/login",

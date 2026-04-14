@@ -2,6 +2,19 @@
 
 <h1>Home</h1>
 
-<p>Welcome to Members Only</p>
+<% if (user) { %>
+  <p>Logged in as: <%= user.email %></p>
+
+  <a href="/auth/logout">Logout</a>
+
+  <br><br>
+  <a href="/messages/new">Create Message</a>
+
+<% } else { %>
+  <p>Not logged in</p>
+
+  <a href="/auth/login">Login</a>
+  <a href="/auth/signup">Sign up</a>
+<% } %>
 
 <%- include('partials/footer') %>

@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 
 // View engine
 app.set("view engine", "ejs");
@@ -40,12 +41,9 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/auth", authRoutes);
-
+app.use("/messages", messageRoutes);
 app.get("/", (req, res) => {
-  res.send(`
-    <h1>Home</h1>
-    <p>${req.user ? "Logged in" : "Not logged in"}</p>
-  `);
+  res.render("index");
 });
 
 // 404
