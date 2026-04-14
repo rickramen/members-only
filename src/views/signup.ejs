@@ -2,12 +2,18 @@
 
 <h1>Sign Up</h1>
 
+<% if (errors && errors.length > 0) { %>
+  <ul>
+    <% errors.forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <form method="POST" action="/signup">
-  <input name="firstName" placeholder="First Name" required />
-  <input name="lastName" placeholder="Last Name" required />
-
-  <input name="email" type="email" placeholder="Email" required />
-
+  <input name="firstName" value="<%= oldInput?.firstName || '' %>" />
+  <input name="lastName" value="<%= oldInput?.lastName || '' %>" />
+  <input name="email" value="<%= oldInput?.email || '' %>" />
   <input name="password" type="password" placeholder="Password" required />
   <input name="confirmPassword" type="password" placeholder="Confirm Password" required />
 

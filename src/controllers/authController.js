@@ -1,19 +1,28 @@
 const bcrypt = require("bcrypt");
 const pool = require("../db/pool");
+const { validationResult } = require("express-validator");
 
 // GET /signup
 exports.getSignup = (req, res) => {
-  res.render("signup");
+  res.render("signup", { 
+    errors: [],
+    oldInput: {}, 
+  });
 };
 
 // POST /signup
 exports.postSignup = async (req, res) => {
-  const { firstName, lastName, email, password, confirmPassword } = req.body;
+  const errors = validationResult(req);
 
-  // validation
-  if (password !== confirmPassword) {
-    return res.send("Passwords do not match");
+  // Handle validation errors
+  if (!errors.isEmpty()) {
+    return res.status(400).render("signup", {
+      errors: errors.array(),
+      oldInput: req.body,
+    });
   }
+
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
