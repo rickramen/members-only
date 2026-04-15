@@ -26,3 +26,19 @@ exports.postNewMessage = async (req, res) => {
     res.send("Error creating message");
   }
 };
+
+exports.deleteMessage = async (req, res) => {
+  const messageId = req.params.id;
+
+  try {
+    await pool.query(
+      "DELETE FROM messages WHERE id = $1",
+      [messageId]
+    );
+
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.send("Error deleting message");
+  }
+};

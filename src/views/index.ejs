@@ -10,6 +10,12 @@
       <p>By: <%= msg.first_name %> <%= msg.last_name %></p>
       <p><%= msg.created_at %></p>
     <% } %>
+
+    <% if (user && user.is_admin) { %>
+      <form method="POST" action="/messages/delete/<%= msg.id %>">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
   </div>
 <% }) %>
 
