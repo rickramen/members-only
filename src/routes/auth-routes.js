@@ -22,4 +22,7 @@ router.post(
   })
 );
 
+// GET logout
+router.get("/logout", authController.logout);
+
 module.exports = router;

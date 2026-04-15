@@ -35,9 +35,29 @@ exports.postSignup = async (req, res) => {
       [firstName, lastName, email, hashedPassword]
     );
 
-    res.send("User created successfully!");
+    req.session.message = "Account created successfully. Please log in.";
+    res.redirect("/auth/login");
+
   } catch (err) {
+    // handle existing email
+    if (err.code === "23505") {
+      return res.status(400).render("signup", {
+        errors: [{ msg: "Email already in use" }],
+        oldInput: req.body,
+      });
+    }
+
     console.error(err);
-    res.send("Error creating user");
+    res.status(500).send("Server error");
   }
+};
+
+exports.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+
+    req.session.destroy(() => {
+      res.redirect("/auth/login");
+    });
+  });
 };

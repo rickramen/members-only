@@ -4,7 +4,7 @@ const pool = require("../db/pool");
 
 // GET form
 exports.getNewMessage = (req, res) => {
-  res.render("newMessage");
+  res.render("new-message");
 };
 
 // POST create message

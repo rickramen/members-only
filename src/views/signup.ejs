@@ -10,12 +10,42 @@
   </ul>
 <% } %>
 
-<form method="POST" action="/signup">
-  <input name="firstName" value="<%= oldInput?.firstName || '' %>" />
-  <input name="lastName" value="<%= oldInput?.lastName || '' %>" />
-  <input name="email" value="<%= oldInput?.email || '' %>" />
-  <input name="password" type="password" placeholder="Password" required />
-  <input name="confirmPassword" type="password" placeholder="Confirm Password" required />
+<form method="POST" action="/auth/signup">
+  <input 
+    name="firstName" 
+    placeholder="First Name" 
+    value="<%= oldInput?.firstName || '' %>" 
+    required
+  />
+
+  <input 
+    name="lastName" 
+    placeholder="Last Name" 
+    value="<%= oldInput?.lastName || '' %>" 
+    required
+  />
+
+  <input 
+    name="email" 
+    type="email"
+    placeholder="Email" 
+    value="<%= oldInput?.email || '' %>" 
+    required
+  />
+
+  <input 
+    name="password" 
+    type="password" 
+    placeholder="Password" 
+    required 
+  />
+
+  <input 
+    name="confirmPassword" 
+    type="password" 
+    placeholder="Confirm Password" 
+    required 
+  />
 
   <button type="submit">Sign Up</button>
 </form>
