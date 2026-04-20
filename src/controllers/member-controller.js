@@ -1,3 +1,5 @@
+// member-controller.js
+
 const pool = require("../db/pool");
 
 // GET /join-club

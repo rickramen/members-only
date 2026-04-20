@@ -1,5 +1,4 @@
 <%- include('partials/header', { user }) %>
-<%- include('partials/navbar', { user }) %>
 
 <% messages.forEach(msg => { %>
   <div>
@@ -12,7 +11,7 @@
     <% } %>
 
     <% if (user && user.is_admin) { %>
-      <form method="POST" action="/messages/delete/<%= msg.id %>">
+      <form method="POST" action="/messages/<%= msg.id %>/delete/">
         <button type="submit">Delete</button>
       </form>
     <% } %>

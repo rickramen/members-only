@@ -1,3 +1,5 @@
+// auth-controller.js
+
 const bcrypt = require("bcrypt");
 const pool = require("../db/pool");
 const { validationResult } = require("express-validator");
