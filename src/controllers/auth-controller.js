@@ -54,6 +54,29 @@ exports.postSignup = async (req, res) => {
   }
 };
 
+exports.getLogin = (req, res) => {
+  res.render("login", { message: null });
+};
+
+const passport = require("passport");
+
+exports.postLogin = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+
+    if (!user) {
+      return res.render("login", {
+        message: info?.message || "Invalid email or password",
+      });
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      return res.redirect("/");
+    });
+  })(req, res, next);
+};
+
 exports.logout = (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);

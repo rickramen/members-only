@@ -10,17 +10,9 @@ router.get("/signup", authController.getSignup);
 router.post("/signup", validateSignup, authController.postSignup);
 
 // GET login page
-router.get("/login", (req, res) => {
-  res.render("login", { errors: [] });
-});
+router.get("/login", authController.getLogin);
 // POST login
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
+router.post("/login", authController.postLogin);
 
 // GET logout
 router.get("/logout", authController.logout);
