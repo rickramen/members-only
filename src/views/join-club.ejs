@@ -1,21 +1,18 @@
 <%- include('partials/header', { user }) %>
 
-<h1>Join the Club</h1>
+<div class="form-container">
+  <h1>Join the Club</h1>
 
-<p>Enter the secret passcode to become a member.</p>
+  <p>Enter the secret passcode to become a member.</p>
 
-<form method="POST" action="/join-club">
-  <input 
-    type="password"
-    name="passcode"
-    placeholder="Enter passcode"
-    required
-  />
   <% if (error) { %>
-    <p style="color:red;"><%= error %></p>
+    <p class="error"><%= error %></p>
   <% } %>
 
-  <button type="submit">Join Club</button>
-</form>
+  <form method="POST" action="/join-club">
+    <input type="password" name="passcode" required />
+    <button type="submit">Join Club</button>
+  </form>
+</div>
 
 <%- include('partials/footer') %>

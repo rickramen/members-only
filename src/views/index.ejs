@@ -1,21 +1,30 @@
 <%- include('partials/header', { user }) %>
 
-<% messages.forEach(msg => { %>
-  <div>
-    <h3><%= msg.title %></h3>
-    <p><%= msg.text %></p>
+<h1>Messages</h1>
 
-    <% if (user && user.is_member) { %>
-      <p>By: <%= msg.first_name %> <%= msg.last_name %></p>
-      <p><%= msg.created_at %></p>
-    <% } %>
+<div class="messages-list">
+  <% messages.forEach(msg => { %>
+    <div class="message-card">
 
-    <% if (user && user.is_admin) { %>
-      <form method="POST" action="/messages/<%= msg.id %>/delete/">
-        <button type="submit">Delete</button>
-      </form>
-    <% } %>
-  </div>
-<% }) %>
+      <h3 class="message-title"><%= msg.title %></h3>
+
+      <p class="message-text"><%= msg.text %></p>
+
+      <% if (user && user.is_member) { %>
+        <div class="message-meta">
+          <div>By: <%= msg.first_name %> <%= msg.last_name %></div>
+          <div><%= new Date(msg.created_at).toLocaleString() %></div>
+        </div>
+      <% } %>
+
+      <% if (user && user.is_admin) { %>
+        <form method="POST" action="/messages/<%= msg.id %>/delete">
+          <button class="delete-btn" type="submit">Delete</button>
+        </form>
+      <% } %>
+
+    </div>
+  <% }) %>
+</div>
 
 <%- include('partials/footer') %>

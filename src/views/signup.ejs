@@ -1,53 +1,59 @@
 <%- include('partials/header') %>
 
-<h1>Sign Up</h1>
+<div class="form-container">
 
-<% if (errors && errors.length > 0) { %>
-  <ul>
-    <% errors.forEach(error => { %>
-      <li><%= error.msg %></li>
-    <% }) %>
-  </ul>
-<% } %>
+  <h1>Sign Up</h1>
 
-<form method="POST" action="/auth/signup">
-  <input 
-    name="firstName" 
-    placeholder="First Name" 
-    value="<%= oldInput?.firstName || '' %>" 
-    required
-  />
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
 
-  <input 
-    name="lastName" 
-    placeholder="Last Name" 
-    value="<%= oldInput?.lastName || '' %>" 
-    required
-  />
+  <form method="POST" action="/auth/signup">
 
-  <input 
-    name="email" 
-    type="email"
-    placeholder="Email" 
-    value="<%= oldInput?.email || '' %>" 
-    required
-  />
+    <input 
+      name="firstName" 
+      placeholder="First Name" 
+      value="<%= oldInput?.firstName || '' %>" 
+      required
+    />
 
-  <input 
-    name="password" 
-    type="password" 
-    placeholder="Password" 
-    required 
-  />
+    <input 
+      name="lastName" 
+      placeholder="Last Name" 
+      value="<%= oldInput?.lastName || '' %>" 
+      required
+    />
 
-  <input 
-    name="confirmPassword" 
-    type="password" 
-    placeholder="Confirm Password" 
-    required 
-  />
+    <input 
+      name="email" 
+      type="email"
+      placeholder="Email" 
+      value="<%= oldInput?.email || '' %>" 
+      required
+    />
 
-  <button type="submit">Sign Up</button>
-</form>
+    <input 
+      name="password" 
+      type="password" 
+      placeholder="Password" 
+      required 
+    />
+
+    <input 
+      name="confirmPassword" 
+      type="password" 
+      placeholder="Confirm Password" 
+      required 
+    />
+
+    <button type="submit">Create Account</button>
+
+  </form>
+
+</div>
 
 <%- include('partials/footer') %>

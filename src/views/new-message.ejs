@@ -1,9 +1,13 @@
-<h1>Create Message</h1>
+<%- include('partials/header', { user }) %>
 
-<form method="POST" action="/messages/new">
-  <input name="title" placeholder="Title" required />
-  
-  <textarea name="text" placeholder="Message" required></textarea>
-  
-  <button type="submit">Post</button>
-</form>
+<div class="form-container">
+  <h1>Create Message</h1>
+
+  <form method="POST" action="/messages/new">
+    <input name="title" placeholder="Title" required />
+    <textarea name="text" placeholder="Message" required></textarea>
+    <button type="submit">Post</button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>
